@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Recipe - Recipe Roulette{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Recipe</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.ingredients.label }}
+            {{ form.ingredients(class="form-control", rows="5") }}
+        </div>
+        <div class="form-group">
+            {{ form.instructions.label }}
+            {{ form.instructions(class="form-control", rows="5") }}
+        </div>
+        <div class="form-group">
+            {{ form.cuisine.label }}
+            {{ form.cuisine(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.dietary_info.label }}
+            {{ form.dietary_info(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+        <a href="{{ url_for('recipe_details', id=recipe.id) }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

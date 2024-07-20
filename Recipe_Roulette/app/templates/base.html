@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Recipe Roulette{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  pl-5">
+
+        <div style="width: 10vw;"></div>
+
+
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_recipe">Add Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/terms">Terms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/privacy">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/payments">Donate</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('home') }}">
+                {{ search_form.hidden_tag() }}
+                {{ search_form.query(class="form-control mr-sm-2", placeholder="Search recipes") }}
+                {{ search_form.submit(class="btn btn-outline-success my-2 my-sm-0") }}
+            </form>
+        </div>
+        <div style="width: 10vw;"></div>
+
+
+        <ul class="navbar-nav ml-auto">
+            {% if session.username %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome, {{ session.username }}</a>
+                </li>
+                
+        <div style="width: 5vw;"></div>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light mr-2" href="/logout">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light mr-2" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light" href="/register">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+        
+        <div style="width: 10vw;"></div>
+
+    </nav>
+
+    <div class="container mt-4 pb-5">
+     
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 ">
+        <p>&copy; 2024 Recipe Roulette. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
