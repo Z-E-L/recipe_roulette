@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results - Recipe Roulette{% endblock %}
+
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if results %}
+        <div class="row">
+            {% for recipe in results %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recipe.name }}</h5>
+                            <p class="card-text">{{ recipe.ingredients[:100] }}...</p>
+                            <a href="{{ url_for('recipe_details', id=recipe.id) }}" class="btn btn-primary">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No recipes found matching your search.</p>
+    {% endif %}
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+{% endblock %}
