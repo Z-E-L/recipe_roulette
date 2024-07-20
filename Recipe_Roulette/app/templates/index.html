@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Recipe Roulette - Home{% endblock %}
+
+{% block content %}
+    <h1>Recipes</h1>
+    <div class="row">
+        {% for recipe in recipes %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.name }}</h5>
+                        <p class="card-text">{{ recipe.ingredients[:100] }}...</p>
+                        <a href="{{ url_for('recipe_details', id=recipe.id) }}" class="btn btn-primary">View Recipe</a>
+                        <a href="{{ url_for('edit_recipe', id=recipe.id) }}" class="btn btn-secondary mt-2">Edit Recipe</a>
+                        <div style="height: 2vh;"></div>
+                        <p>by {{recipe.username}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
